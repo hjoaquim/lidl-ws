@@ -1,0 +1,21 @@
+{
+  "name": "Day 4 — Pipelines & Airflow",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "postCreateCommand": "pip install 'apache-airflow==2.10.5' --constraint 'https://raw.githubusercontent.com/apache/airflow/constraints-2.10.5/constraints-3.11.txt' && pip install -r requirements.txt",
+  "forwardPorts": [8080, 8501],
+  "portsAttributes": {
+    "8080": { "label": "Airflow", "onAutoForward": "notify" },
+    "8501": { "label": "Streamlit", "onAutoForward": "openPreview" }
+  },
+  "containerEnv": {
+    "AIRFLOW_HOME": "${containerWorkspaceFolder}/.airflow",
+    "AIRFLOW__CORE__DAGS_FOLDER": "${containerWorkspaceFolder}/dags",
+    "AIRFLOW__CORE__LOAD_EXAMPLES": "False"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-python.python", "ms-toolsai.jupyter"]
+    }
+  },
+  "remoteUser": "vscode"
+}
