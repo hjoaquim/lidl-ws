@@ -119,22 +119,26 @@ from airflow.decorators import dag, task
 @dag(schedule=None, ...)
 def demo_etl():
     @task
-    def extract() -> int:
-        return 100
+    def extract():
+        print("read the data")
     @task
-    def transform(rows: int) -> int:
-        return rows - 3
+    def transform():
+        print("clean it")
     @task
-    def load(rows: int) -> None:
-        print(f"Loaded {rows} rows.")
+    def load():
+        print("write it out")
 
-    load(transform(extract()))   # this wiring = extract >> transform >> load
+    extract() >> transform() >> load()   # '>>' sets the run order
 demo_etl()
 ```
 
-Each `@task` is a step; calling `load(transform(extract()))` tells Airflow the
-**order**. The `@dag` settings (`schedule`, retries…) are the superpowers from
-the last section.
+Each `@task` is a step; `extract() >> transform() >> load()` tells Airflow the
+**order** (extract first, then transform, then load). The `@dag` settings
+(`schedule`, retries…) are the superpowers from the last section.
+
+*(Tasks can also pass data to each other by returning a value and taking it as
+an argument — but here each stage hands off through files in `output/`, so we
+just need the ordering.)*
 """))
 
     C(md("""

@@ -28,21 +28,22 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 def superstore_pipeline():
 
     @task
-    def extract() -> int:
+    def extract():
         from src.pipeline import extract
-        return extract()
+        extract()
 
     @task
-    def transform(_rows: int) -> int:
+    def transform():
         from src.pipeline import transform
-        return transform()
+        transform()
 
     @task
-    def load(_rows: int) -> str:
+    def load():
         from src.pipeline import load
-        return load()
+        load()
 
-    load(transform(extract()))
+    # stages hand off via output/ files, so we just set the order with '>>'
+    extract() >> transform() >> load()
 
 
 superstore_pipeline()

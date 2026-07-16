@@ -21,21 +21,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 def superstore_pipeline():
 
     @task
-    def extract() -> int:
-        # TODO: call extract() from src.pipeline and return its result
+    def extract():
+        # TODO: call extract() from src.pipeline
         raise NotImplementedError
 
     @task
-    def transform(_rows: int) -> int:
+    def transform():
         # TODO: call transform() from src.pipeline
         raise NotImplementedError
 
     @task
-    def load(_rows: int) -> str:
+    def load():
         # TODO: call load() from src.pipeline
         raise NotImplementedError
 
-    # TODO: wire the tasks so they run in order: extract -> transform -> load
+    # TODO: wire the tasks so they run in order, e.g. extract() >> transform() >> load()
     ...
 
 

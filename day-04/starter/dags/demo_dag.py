@@ -15,21 +15,19 @@ from airflow.decorators import dag, task
 def demo_etl():
 
     @task
-    def extract() -> int:
-        print("Pretend we read 100 rows from a source.")
-        return 100
+    def extract():
+        print("Extract: read 100 rows from the source.")
 
     @task
-    def transform(rows: int) -> int:
-        cleaned = rows - 3
-        print(f"Cleaning {rows} rows -> {cleaned} after dropping dupes.")
-        return cleaned
+    def transform():
+        print("Transform: cleaned the rows (dropped duplicates).")
 
     @task
-    def load(rows: int) -> None:
-        print(f"Loaded {rows} clean rows to the warehouse. ✅")
+    def load():
+        print("Load: wrote the clean rows to the warehouse. ✅")
 
-    load(transform(extract()))
+    # '>>' sets the order: run extract, then transform, then load.
+    extract() >> transform() >> load()
 
 
 demo_etl()
