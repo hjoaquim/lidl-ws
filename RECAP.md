@@ -33,7 +33,7 @@ Each template repo has a **`solutions` branch** with completed code — point
 attendees there *after* each session. (In `lidl-ws`, the same solutions live
 under `day-0X/solution/`.)
 
-## Trainer reminders (Day 4)
+## Reminders (Day 4)
 
 - Each attendee needs a **GitHub account with Codespaces** enabled. Nothing else.
 - **One repo per group**; groups pick how to collaborate (Live Share / one driver).
