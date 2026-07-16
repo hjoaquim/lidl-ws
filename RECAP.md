@@ -1,6 +1,6 @@
 # Python for Data Analytics — Workshop Recap
 
-A 4-day (3h/day) program taking practitioners from "never written Python" to
+A 4-session (~3h) program taking practitioners from "beginner with Python" to
 building and orchestrating a small analytics pipeline with a dashboard.
 
 ## Repositories
